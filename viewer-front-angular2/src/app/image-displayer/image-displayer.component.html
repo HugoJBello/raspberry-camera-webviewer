@@ -1,0 +1,63 @@
+<div class=imageContainer>
+  <ng-container *ngIf="imagesF.length>0">
+
+
+    <mat-tab-group class="demo-tab-group">
+
+      <mat-tab class="demo-tab-component">
+        <ng-template mat-tab-label>
+          Images
+        </ng-template>
+        <app-image-custom-gallery [images]="images"></app-image-custom-gallery>
+      </mat-tab>
+
+      <mat-tab class="demo-tab-component">
+        <ng-template mat-tab-label>
+          Files
+        </ng-template>
+
+        <!-- <table datatable> -->
+
+        <mat-table #table [dataSource]="dataSource">
+          <!-- filename Column -->
+          <ng-container matColumnDef="filename">
+            <mat-header-cell *matHeaderCellDef> Filename </mat-header-cell>
+            <mat-cell *matCellDef="let image"> {{image.filename}} </mat-cell>
+          </ng-container>
+
+          <!-- path Column -->
+          <ng-container matColumnDef="path">
+            <mat-header-cell *matHeaderCellDef> Path </mat-header-cell>
+            <mat-cell *matCellDef="let image"> {{image.path}} </mat-cell>
+          </ng-container>
+
+          <!-- date Column -->
+          <ng-container matColumnDef="date_taken">
+            <mat-header-cell *matHeaderCellDef> Date taken </mat-header-cell>
+            <mat-cell *matCellDef="let image"> {{image.date_taken}} </mat-cell>
+          </ng-container>
+
+          <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+          <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+        </mat-table>
+
+        <!-- pagination -->
+        <ng-container *ngIf="imageQuery.numberOfImages=='all' && parametersImageQuery">
+        <div *ngFor="let item of images | 
+                          paginate: { itemsPerPage: parametersImageQuery.entriesPerPage, currentPage: 
+                            imageQuery.page,totalItems:parametersImageQuery.numberOfItems  }"></div>
+        <pagination-controls (pageChange)="pageChanged($event)"></pagination-controls>
+        </ng-container>
+      </mat-tab>
+
+      <mat-tab class="demo-tab-component">
+        <ng-template mat-tab-label>
+          Gallery
+        </ng-template>
+        <ngx-image-gallery [images]="imagesF" [conf]="conf" (onOpen)="galleryOpened($event)" (onClose)="galleryClosed()" (onDelete)="deleteImage($event)"></ngx-image-gallery>
+      </mat-tab>
+
+    </mat-tab-group>
+  </ng-container>
+
+</div>

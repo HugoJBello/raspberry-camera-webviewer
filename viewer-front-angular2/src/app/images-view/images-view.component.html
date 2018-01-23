@@ -1,0 +1,15 @@
+
+<app-query-images [imageQuery]="imageQuery"
+[parametersImageQuery] = "parametersImageQuery" 
+(onChangeParameters)="onChangeParameters($event)" 
+(onChangeImagesQuery)="onChangeImagesQuery($event)" 
+(onImagesSearch)="onImagesSearch($event)"></app-query-images>
+
+<app-image-displayer [images]="images"
+[parametersImageQuery] = "parametersImageQuery" 
+[imageQuery]="imageQuery"
+(onImagesSearch)="onImagesSearch($event)" ></app-image-displayer>
+
+<div class="col-sm-12 alert alert-danger" *ngIf="error">
+  <strong>Oops!</strong>  An error occurred fetching data. Please try again.
+</div>

@@ -1,0 +1,17 @@
+<div class="panel panel-default imgContainer">
+  <div class="panel-heading">
+    <div class="buttonsBlock">
+      <button class="previous round" (click)="showPrevious($event)">&#8249;</button>
+      {{currentPage+1}}/{{numberOfPages}}
+      <button class="next round" (click)="showNext($event)">&#8250;</button>
+    </div>
+    <h3 class="panel-title">{{ images[currentPage].filename }}</h3>
+  </div>
+  <div class="panel-body">
+    <img src={{images[currentPage].url}}>
+  </div>
+
+  <div class="panel-footer">
+    {{images[currentPage].date_taken}}
+  </div>
+</div>

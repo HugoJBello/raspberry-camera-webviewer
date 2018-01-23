@@ -1,0 +1,20 @@
+.imageContainer {
+    /* height: auto;
+    margin-right: auto;
+    margin-left: auto; */
+}
+.imgGallery {
+    width: 100%;
+    height: auto;
+}
+.centeredTable{
+    margin-left:auto; 
+    margin-right:auto;
+}
+::ng-deep .mat-tab-labels{
+    justify-content: center; /* align items in Main Axis */
+}
+.mat-tab-label-active{
+    background-color: #3398dc !important;
+    opacity: 1 !important;
+    }

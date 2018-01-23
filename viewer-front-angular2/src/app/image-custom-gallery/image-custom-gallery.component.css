@@ -1,0 +1,43 @@
+
+.imgContainer {
+    display:block;
+    margin:auto;
+    max-width:600px;
+}
+img {
+    display:block;
+    margin:auto;
+    width: 100%;
+    height: auto;
+}
+
+a {
+    text-decoration: none;
+    display: inline-block;
+    padding: 8px 16px;
+}
+
+a:hover {
+    background-color: #ddd;
+    color: black;
+}
+
+.previous {
+    background-color:  #4CAF50;
+    color: black;
+}
+
+.next {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.round {
+    border-radius: 50%;
+}
+
+.buttonsBlock{
+    display: inline-block;
+    float: none;
+    margin-left: 40%;
+}
