@@ -26,7 +26,7 @@ export class ImagesService {
   getImagesDatePaged(day,page) {
     return this.http
       .get(this.urlImagesPagedDateFiles + "/day=" + day + "/page=" + page, {
-        headers: new HttpHeaders().set('Authorization', `Bearer ${localStorage.getItem('token')}`)
+        headers: new HttpHeaders().set('Authorization', `Bearer ${localStorage.getItem('id_token')}`)
       })
       .pipe(
         catchError(this.handleError)
@@ -35,7 +35,7 @@ export class ImagesService {
   getImagesPaged(page) {
     return this.http
       .get(this.urlImagesPagedFiles + "/page=" + page, {
-        headers: new HttpHeaders().set('Authorization', `Bearer ${localStorage.getItem('token')}`)
+        headers: new HttpHeaders().set('Authorization', `Bearer ${localStorage.getItem('id_token')}`)
       })
       .pipe(
         catchError(this.handleError)
@@ -46,7 +46,7 @@ export class ImagesService {
     console.log(this.baseUrl);
     return this.http
       .get(this.urlLastImagesLimit + "/" + limit, {
-        headers: new HttpHeaders().set('Authorization', `Bearer ${localStorage.getItem('token')}`)
+        headers: new HttpHeaders().set('Authorization', `Bearer ${localStorage.getItem('id_token')}`)
       })
       .pipe(
         catchError(this.handleError)
@@ -56,7 +56,7 @@ export class ImagesService {
   getLastImagesLimitDate(limit,date) {
     return this.http
       .get(this.urlLastImagesLimitDate + "/limit=" + limit + "/skip=0/day=" + date, {
-        headers: new HttpHeaders().set('Authorization', `Bearer ${localStorage.getItem('token')}`)
+        headers: new HttpHeaders().set('Authorization', `Bearer ${localStorage.getItem('id_token')}`)
       })
       .pipe(
         catchError(this.handleError)
@@ -66,7 +66,7 @@ export class ImagesService {
   getParametersDate(date) {
     return this.http
       .get(this.urlImagesPagedDateParameters + "/day=" + date, {
-        headers: new HttpHeaders().set('Authorization', `Bearer ${localStorage.getItem('token')}`)
+        headers: new HttpHeaders().set('Authorization', `Bearer ${localStorage.getItem('id_token')}`)
       })
       .pipe(
         catchError(this.handleError)
@@ -76,7 +76,7 @@ export class ImagesService {
   getParameters() {
     return this.http
       .get(this.urlImagesPagedParameters, {
-        headers: new HttpHeaders().set('Authorization', `Bearer ${localStorage.getItem('token')}`)
+        headers: new HttpHeaders().set('Authorization', `Bearer ${localStorage.getItem('id_token')}`)
       })
       .pipe(
         catchError(this.handleError)
