@@ -8,7 +8,7 @@ interface Config {
 
 }
 
-var url_base = 'localhost';
+var url_base = 'hjbello.hopto.org';
 
 export var CONFIG: Config = {
   CLIENT_ID: 'YTP9te890uUMscjE2sbA_IE51ztOMWNB',

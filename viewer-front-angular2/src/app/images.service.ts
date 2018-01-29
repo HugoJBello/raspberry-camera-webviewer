@@ -12,13 +12,13 @@ export class ImagesService {
   
   private baseUrl = 'http://' + CONFIG.URL_BASE + ':3333';
  // private baseUrl = 'http://hjbello.hopto.org:3333';
-  private urlImagesPagedDateFiles = this.baseUrl + '/images_base64_date_paged_files';
-  private urlImagesPagedFiles = this.baseUrl + '/images_base64_paged_files';
-  private urlLastImagesLimit = this.baseUrl + '/get_list_images';
-  private urlLastImagesLimitDate = this.baseUrl + '/images_base64_date'; // limit=:limit/skip=:skip/day=:day/';
-  private urlImagesPagedDateParameters = this.baseUrl + "/images_base64_parameters_date"
-  private urlImagesPagedParameters = this.baseUrl + "/images_base64_parameters"
-  private urlActiveCameras = this.baseUrl + "/active_cameras"
+  private urlImagesPagedDateFiles = this.baseUrl + '/images/images_base64_date_paged_files';
+  private urlImagesPagedFiles = this.baseUrl + '/images/images_base64_paged_files';
+  private urlLastImagesLimit = this.baseUrl + '/images/get_list_images';
+  private urlLastImagesLimitDate = this.baseUrl + '/images/images_base64_date'; // limit=:limit/skip=:skip/day=:day/';
+  private urlImagesPagedDateParameters = this.baseUrl + "/images/images_base64_parameters_date"
+  private urlImagesPagedParameters = this.baseUrl + "/images/images_base64_parameters"
+  private urlActiveCameras = this.baseUrl + "/images/active_cameras"
 
 
   private images: Image[];

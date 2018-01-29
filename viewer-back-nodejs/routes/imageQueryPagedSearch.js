@@ -8,9 +8,6 @@ var config = require('../config/config');
 
 const entriesPerPage=10;
 
-if (config.useAuth0){
-  router.use(checkJwt);
-}
 
 router.get('/images_base64_paged_files/page=:page', function(req, res) {
   if(req.params.page){

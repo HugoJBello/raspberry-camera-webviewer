@@ -14,7 +14,7 @@ import base64
 class RestSender:
 
     def __init__(self):
-        self.url ="http://localhost:3333/save_new_shot"
+        self.url ="http://hjbello.hopto.org:3333/save_new_shot"
         self.username = "norhug"
         self.password ="b1234"
         self.camera_id = "camera_2"

@@ -4,6 +4,8 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var checkJwt = require('./auth/checkJwt');
+var config = require('./config/config');
 
 var imageQuery = require('./routes/imageQuery');
 var imageQueryPagedSearch = require('./routes/imageQueryPagedSearch');
@@ -37,10 +39,15 @@ app.use(cookieParser());
 
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', imageQuery);
-app.use('/', imageQueryPagedSearch);
+
+if (config.useAuth0){
+  app.use('/images/',checkJwt);
+}
+
+app.use('/images/', imageQuery);
+app.use('/images/', imageQueryPagedSearch);
 app.use('/', imageSaverFromCam);
-app.use('/', imageSender);
+app.use('images/', imageSender);
 
 
 // catch 404 and forward to error handler

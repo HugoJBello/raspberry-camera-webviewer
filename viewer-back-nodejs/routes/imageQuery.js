@@ -6,9 +6,6 @@ var checkJwt = require('../auth/checkJwt');
 var con = require('../mysql_connection/connection');
 var config = require('../config/config');
 
-if (config.useAuth0){
-  router.use(checkJwt);
-}
 
 
 router.get('/get_list_images/:limit', function(req, res, next) {
