@@ -14,9 +14,11 @@ import base64
 class RestSender:
 
     def __init__(self):
-        self.url ="http://hjbello.hopto.org:3333/save_new_shot"
+        self.url ="http://localhost:3333/save_new_shot"
         self.username = "norhug"
         self.password ="b1234"
+        self.camera_id = "camera_2"
+
 
     def send_shot(self,filename,full_path):
         context = ssl.SSLContext(ssl.PROTOCOL_TLSv1)
@@ -33,7 +35,7 @@ class RestSender:
         urllib.request.install_opener(opener)
 
         base64_image = self.encode_base64_image(full_path)
-        data = urlencode({"filename" : filename, "path": full_path, "base64": base64_image}).encode()
+        data = urlencode({"filename" : filename, "path": full_path, "base64": base64_image, "camera_id": self.camera_id}).encode()
 
         response = urllib.request.urlopen(self.url,data)
         

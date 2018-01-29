@@ -26,7 +26,16 @@ var auth = function (req, res, next) {
 router.post("/save_new_shot", auth, function (req, res) {
   var basePath = config.destinyPath + "/" + formatDate(new Date);
   var destinyPath = basePath  + "/" + req.body.filename;
-  var sql = 'insert into image (date_taken,path,filename) values (sysdate(),"' + destinyPath + '","' + req.body.filename + '");'
+  try{
+    var cameraIp = req.ip;
+    var cameraId = req.body.camera_id;
+  } catch (err) {
+    var cameraIp = "unknown IP";
+    var cameraId = "unknown id";
+  }
+  
+  var sql = 'insert into image (date_taken,path,filename,camera_id,camera_ip) values (sysdate(),"' + destinyPath + '","' + req.body.filename + '","' + cameraId+ '","' +cameraIp+ '");'
+  
   con.query(sql, function (err, result, fields) {
     if (err) throw err;
   });

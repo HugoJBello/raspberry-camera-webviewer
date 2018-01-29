@@ -33,6 +33,8 @@ const checkScopes = jwtAuthz([ 'openid profile read:images' ]);
 
 var app = express();
 app.use(cors());
+app.enable('trust proxy');
+
 //app.use(jwtCheck);
 //app.use(checkScopes);
 
