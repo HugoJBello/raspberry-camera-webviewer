@@ -1,10 +1,11 @@
 var mysql = require('mysql');
+var config = require('../config/config');
 
 var con = mysql.createConnection({
-    host: "localhost",
-    user: "root",
-    password: "1234",
-    database: "picam_app" 
+    host: config.mysqlHost,
+    user: config.mysqlUser,
+    password: config.mysqlPassword,
+    database: config.mysqlDatabase 
   });
 
   module.exports = con;

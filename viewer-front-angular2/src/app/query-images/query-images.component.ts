@@ -86,7 +86,7 @@ export class QueryImagesComponent implements OnInit, OnDestroy {
           .subscribe(
           images => this.images = images,
           err => error => this.error = err,
-          () => { this.onImagesSearch.emit(this.images); this.onChangeImagesQuery.emit(this.imageQuery); }
+          () => { console.log(this.images);this.onImagesSearch.emit(this.images); this.onChangeImagesQuery.emit(this.imageQuery); }
           );
       } else {
         this.imagesSub = this.imagesService

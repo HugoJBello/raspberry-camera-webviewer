@@ -5,34 +5,18 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
-var index = require('./routes/index');
 var imageQuery = require('./routes/imageQuery');
 var imageQueryPagedSearch = require('./routes/imageQueryPagedSearch');
 var imageSaverFromCam = require('./routes/imageSaverFromCam');
+var imageSender = require('./routes/imageSender');
 
-var users = require('./routes/users');
-
-const jwt = require('express-jwt');
-const jwks = require('jwks-rsa');
 const cors = require('cors');
-const jwtAuthz = require('express-jwt-authz');
+//const checkScopes = jwtAuthz([ 'openid profile read:images' ]);
 
-var jwtCheck = jwt({ 
-  secret: jwks.expressJwtSecret({
-      cache: true,
-      rateLimit: true,
-      jwksRequestsPerMinute: 5,
-      jwksUri: "https://cam-viewer-hjbello.eu.auth0.com/.well-known/jwks.json"
-  }),
-  audience: 'picam-viewer-back-angular',
-  issuer: "https://cam-viewer-hjbello.eu.auth0.com/",
-  algorithms: ['RS256']
-});
-
-const checkScopes = jwtAuthz([ 'openid profile read:images' ]);
 
 var app = express();
 app.use(cors());
+
 app.enable('trust proxy');
 
 //app.use(jwtCheck);
@@ -56,6 +40,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', imageQuery);
 app.use('/', imageQueryPagedSearch);
 app.use('/', imageSaverFromCam);
+app.use('/', imageSender);
 
 
 // catch 404 and forward to error handler

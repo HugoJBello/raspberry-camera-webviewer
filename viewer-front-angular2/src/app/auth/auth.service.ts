@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import * as auth0 from 'auth0-js';
-import { AUTH_CONFIG } from './auth-config';
+import { CONFIG } from '../config/config';
 import { Router } from '@angular/router';
 
 @Injectable()
@@ -9,12 +9,12 @@ export class AuthService {
   // Create Auth0 web auth instance
   // @TODO: Update AUTH_CONFIG and remove .example extension in src/app/auth/auth0-variables.ts.example
   auth0 = new auth0.WebAuth({
-    clientID: AUTH_CONFIG.CLIENT_ID,
-    domain: AUTH_CONFIG.CLIENT_DOMAIN,
+    clientID: CONFIG.CLIENT_ID,
+    domain: CONFIG.CLIENT_DOMAIN,
     responseType: 'token id_token',
-    redirectUri: AUTH_CONFIG.REDIRECT,
-    audience: AUTH_CONFIG.AUDIENCE,
-    scope: AUTH_CONFIG.SCOPE
+    redirectUri: CONFIG.REDIRECT,
+    audience: CONFIG.AUDIENCE,
+    scope: CONFIG.SCOPE
   });
   userProfile: any;
 

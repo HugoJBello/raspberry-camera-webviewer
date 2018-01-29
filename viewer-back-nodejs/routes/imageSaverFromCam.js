@@ -34,11 +34,28 @@ router.post("/save_new_shot", auth, function (req, res) {
     var cameraId = "unknown id";
   }
   
-  var sql = 'insert into image (date_taken,path,filename,camera_id,camera_ip) values (sysdate(),"' + destinyPath + '","' + req.body.filename + '","' + cameraId+ '","' +cameraIp+ '");'
-  
-  con.query(sql, function (err, result, fields) {
+  var sqlNewImage = 'insert into image (date_taken,path,filename,camera_id,camera_ip) values (sysdate(),"' + destinyPath + '","' + req.body.filename + '","' + cameraId+ '","' +cameraIp+ '");'
+  var sqlNewCamera = 'insert into camera (camera_id,date_added) values ("' + cameraId+ '",sysdate());'
+  var sqlSearchCamera = 'SELECT count(*) FROM camera where camera_id= "'+cameraId+'"';
+  console.log("::::::")
+  //first we check that the camera exist in the db
+  con.query(sqlSearchCamera, function (err, result, fields) {
     if (err) throw err;
+    console.log(result[0]);
+    if (result[0]['count(*)']=='0') {
+      console.log(sqlNewCamera);
+      //if it does not exist we create it
+      con.query(sqlNewCamera, function (err, result, fields) { 
+        if (err) throw err;
+      });
+    }
+    console.log(sqlNewImage);
+    //now we add the image
+    con.query(sqlNewImage, function (err, result, fields) {
+      if (err) throw err;
+    });
   });
+
   try{
     ensureExists(basePath).then(
       saveBase64Image(req.body.base64,destinyPath));

@@ -3,13 +3,14 @@ import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http
 import { Observable } from 'rxjs/Observable';
 import { catchError } from 'rxjs/operators';
 import { Image } from './image';
+import { CONFIG } from './config/config';
 
 @Injectable()
 export class ImagesService {
   // Define the routes we are going to interact with
  // private urlImagesPagedFiles = 'http://localhost:3333/images_base64_date_paged_files';
   
-  private baseUrl = 'http://localhost:3333';
+  private baseUrl = 'http://' + CONFIG.URL_BASE + ':3333';
  // private baseUrl = 'http://hjbello.hopto.org:3333';
   private urlImagesPagedDateFiles = this.baseUrl + '/images_base64_date_paged_files';
   private urlImagesPagedFiles = this.baseUrl + '/images_base64_paged_files';
@@ -17,6 +18,8 @@ export class ImagesService {
   private urlLastImagesLimitDate = this.baseUrl + '/images_base64_date'; // limit=:limit/skip=:skip/day=:day/';
   private urlImagesPagedDateParameters = this.baseUrl + "/images_base64_parameters_date"
   private urlImagesPagedParameters = this.baseUrl + "/images_base64_parameters"
+  private urlActiveCameras = this.baseUrl + "/active_cameras"
+
 
   private images: Image[];
 
@@ -80,7 +83,17 @@ export class ImagesService {
       })
       .pipe(
         catchError(this.handleError)
-      );
+      )
+  }
+
+  getActiveCameras() {
+    return this.http
+      .get(this.urlActiveCameras, {
+        headers: new HttpHeaders().set('Authorization', `Bearer ${localStorage.getItem('id_token')}`)
+      })
+      .pipe(
+        catchError(this.handleError)
+      )
   }
 
   // Implement a method to handle errors if any

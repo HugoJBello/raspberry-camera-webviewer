@@ -6,6 +6,7 @@ import { ImagesService } from '../images.service';
 import { Subscription } from 'rxjs/Subscription';
 import { AuthService } from '../auth/auth.service';
 import {MatTableDataSource} from '@angular/material';
+import { CONFIG } from '../config/config';
 
 //import { NgxGalleryOptions, NgxGalleryImage, NgxGalleryAnimation } from 'ngx-gallery';
 import { NgxImageGalleryComponent, GALLERY_IMAGE, GALLERY_CONF } from "ngx-image-gallery";
@@ -18,15 +19,17 @@ import { NgxImageGalleryComponent, GALLERY_IMAGE, GALLERY_CONF } from "ngx-image
 })
 export class ImageDisplayerComponent implements OnInit {
   @Input() images: Image[]; 
+  @Input() imagesByCamera : any[];
   @Input() imageQuery: ImageQuery;
   @Input() parametersImageQuery: ParametersImageQuery;
   @Output() onImagesSearch = new EventEmitter<Image[]>();
-  
+
+
   error: any;
   imagesSub: Subscription;
 
   //urlBackend : string = "http://hjbello.hopto.org:3333/image_recorded/"
-  urlBackend : string = "http://localhost.org:3333/image_recorded/"
+  urlBackend : string = "http://" + CONFIG.URL_BASE + ":3333/image_recorded/"
   
   // gallery configuration
   ngxImageGallery: NgxImageGalleryComponent;
@@ -41,16 +44,19 @@ export class ImageDisplayerComponent implements OnInit {
   
   // table configuration
   dataSource = new MatTableDataSource<Image>(this.images);
-  displayedColumns = ['filename', 'path', 'date_taken',];
+  displayedColumns = ['filename', 'path', 'date_taken','camera_id','camera_ip'];
 
   constructor(public imagesService: ImagesService){
   }
  
+  
+  
   ngOnInit(){
 
   }
   ngOnChanges() {
     this.loadImagesFormated();
+    console.log(this.imagesByCamera);
     this.dataSource = new MatTableDataSource<Image>(this.images);
 
   }

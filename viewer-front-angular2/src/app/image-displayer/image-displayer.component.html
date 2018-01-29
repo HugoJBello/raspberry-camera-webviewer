@@ -8,7 +8,11 @@
         <ng-template mat-tab-label>
           Images
         </ng-template>
-        <app-image-custom-gallery [images]="images"></app-image-custom-gallery>
+        <div *ngFor="let item of imagesByCamera">
+          <app-image-custom-gallery [images]="item"></app-image-custom-gallery>
+        </div>
+      
+      
       </mat-tab>
 
       <mat-tab class="demo-tab-component">
@@ -37,9 +41,21 @@
             <mat-cell *matCellDef="let image"> {{image.date_taken}} </mat-cell>
           </ng-container>
 
-          <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-          <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
-        </mat-table>
+        <!-- camera_id Column -->
+        <ng-container matColumnDef="camera_id">
+          <mat-header-cell *matHeaderCellDef> Camera Id </mat-header-cell>
+          <mat-cell *matCellDef="let image"> {{image.camera_id}} </mat-cell>
+        </ng-container>
+
+        <!-- camera_ip Column -->
+        <ng-container matColumnDef="camera_ip">
+          <mat-header-cell *matHeaderCellDef> Camera IP </mat-header-cell>
+          <mat-cell *matCellDef="let image"> {{image.camera_ip}} </mat-cell>
+        </ng-container>
+
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+      </mat-table>
 
         <!-- pagination -->
         <ng-container *ngIf="imageQuery.numberOfImages=='all' && parametersImageQuery">

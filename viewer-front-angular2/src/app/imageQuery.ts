@@ -5,6 +5,7 @@ export class ImageQuery {
     public allImages: boolean,
     public anyDate:boolean,
     public date: any,
+    public camera_id: string
     ) {}
   }
   

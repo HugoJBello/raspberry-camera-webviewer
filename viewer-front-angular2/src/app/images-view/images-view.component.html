@@ -8,6 +8,7 @@
 <app-image-displayer [images]="images"
 [parametersImageQuery] = "parametersImageQuery" 
 [imageQuery]="imageQuery"
+[imagesByCamera] = "imagesByCamera"
 (onImagesSearch)="onImagesSearch($event)" ></app-image-displayer>
 
 <div class="col-sm-12 alert alert-danger" *ngIf="error">
