@@ -47,7 +47,7 @@ if (config.useAuth0){
 app.use('/images/', imageQuery);
 app.use('/images/', imageQueryPagedSearch);
 app.use('/', imageSaverFromCam);
-app.use('images/', imageSender);
+app.use('/serve/', imageSender);
 
 
 // catch 404 and forward to error handler

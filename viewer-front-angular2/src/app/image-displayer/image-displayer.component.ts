@@ -29,7 +29,7 @@ export class ImageDisplayerComponent implements OnInit {
   imagesSub: Subscription;
 
   //urlBackend : string = "http://hjbello.hopto.org:3333/image_recorded/"
-  urlBackend : string = "http://" + CONFIG.URL_BASE + ":3333/images/image_recorded/"
+  urlBackend : string = "http://" + CONFIG.URL_BASE + ":3333/serve/image_recorded/"
   
   // gallery configuration
   ngxImageGallery: NgxImageGalleryComponent;

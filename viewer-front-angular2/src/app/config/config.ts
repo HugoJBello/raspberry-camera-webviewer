@@ -16,7 +16,7 @@ export var CONFIG: Config = {
   //URL_BASE:'hjbello.hopto.org',
   URL_BASE: url_base,
   AUDIENCE: 'https://cam-viewer-hjbello.eu.auth0.com/userinfo', // e.g., http://localhost:3001
-  REDIRECT: 'http://' + url_base + ':4200/callback',
+  REDIRECT: 'http://' + url_base + ':3000/callback',
   SCOPE: 'openid profile email',
   
 
