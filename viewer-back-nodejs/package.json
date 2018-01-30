@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "start": "node ./bin/www",
-    "debug": "node --nolazy --inspect-brk=9229 app.js"
+    "debug": "node --nolazy --inspect-brk=3333 ./bin/www"
   },
   "dependencies": {
     "basic-auth": "^2.0.0",
