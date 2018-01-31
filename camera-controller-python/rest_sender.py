@@ -3,21 +3,16 @@ import urllib.request
 import ssl
 import certifi
 from contextlib import closing
-try:
-    from urllib.parse import urlencode
-    from urllib.request import urlopen
-except ImportError: # Python 2
-    from urllib import urlencode
-    from urllib2 import urlopen
+from urllib.parse import urlencode
 import base64
 
 class RestSender:
 
-    def __init__(self):
-        self.url ="http://hjbello.hopto.org:3333/save_new_shot"
-        self.username = "norhug"
-        self.password ="b1234"
-        self.camera_id = "camera_2"
+    def __init__(self, url,username,password,camera_id):
+        self.url = url # "http://hjbello.hopto.org:3333/save_new_shot"
+        self.username = username # "norhug"
+        self.password = password #"b1234"
+        self.camera_id = camera_id # "camera_2"
 
 
     def send_shot(self,filename,full_path):
@@ -40,6 +35,7 @@ class RestSender:
         response = urllib.request.urlopen(self.url,data)
         
         print(response.read())
+        return response.read().decode("utf-8") 
 
     def encode_base64_image(self,path):
         with open(path, "rb") as image_file:

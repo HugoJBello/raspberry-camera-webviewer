@@ -7,27 +7,31 @@ from rest_sender import RestSender
 import time, threading
 import os, errno
 from pathlib import Path
+import json
 
 
 def capture_and_send(base_dir):
 	wait = 40
 	try:
-		#cameraController = CameraControllerOpencv(base_dir)
-		cameraController = CameraControllerPicamera(base_dir)
-		cameraController.take_a_shot()
+		
+		with open('config.json', 'r') as f:
+			config = json.load(f)
+			#cameraController = CameraControllerOpencv(base_dir)
+			cameraController = CameraControllerPicamera(base_dir)
+			cameraController.take_a_shot()
 
-		filename = cameraController.filename
-		full_path = cameraController.path
+			filename = cameraController.filename
+			full_path = cameraController.path
 
-		try:
-			restSender = RestSender()
-			restSender.send_shot(filename,full_path)
-			os.remove(full_path)			
-		except:
-			print("error")
-			
-		print("waiting " + str(wait) + "seconds")
-		time.sleep(wait)
+			try:
+				restSender = RestSender(config["REST_URL"], config["REST_USER"], config["REST_PASSWORD"], config["CAMERA_ID"])
+				restSender.send_shot(filename,full_path)
+				os.remove(full_path)			
+			except:
+				print("error")
+				
+			print("waiting " + str(wait) + "seconds")
+			time.sleep(wait)
 	except:
 		print("an error ocurred, it will be atempted again")
 		raise

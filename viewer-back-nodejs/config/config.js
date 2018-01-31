@@ -7,5 +7,6 @@ module.exports = {
     mysqlHost:"localhost",
     mysqlUser:"root",
     mysqlPassword:"",
-    mysqlDatabase:"picam_app"
+    mysqlDatabase:"picam_app",
+    mysqlConnectionPullLimit: 100
   };
