@@ -23,6 +23,8 @@ import {MatTabsModule} from '@angular/material/tabs';
 import { BrowserAnimationsModule, NoopAnimationsModule } from '@angular/platform-browser/animations';
 import {MatTableModule} from '@angular/material/table';
 import {CdkTableModule} from '@angular/cdk/table';
+import { HourHeatDiagramComponent } from './hour-heat-diagram/hour-heat-diagram.component';
+import { CalendarHeatmap } from 'angular2-calendar-heatmap';
 
 
 @NgModule({
@@ -33,7 +35,9 @@ import {CdkTableModule} from '@angular/cdk/table';
     CallbackComponent,
     ImageDisplayerComponent,
     QueryImagesComponent,
-    ImageCustomGalleryComponent
+    ImageCustomGalleryComponent,
+    HourHeatDiagramComponent,
+    CalendarHeatmap
     ],
   imports: [
     BrowserModule,

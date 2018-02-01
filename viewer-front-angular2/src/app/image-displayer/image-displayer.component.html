@@ -73,6 +73,13 @@
         <ngx-image-gallery [images]="imagesF" [conf]="conf" (onOpen)="galleryOpened($event)" (onClose)="galleryClosed()" (onDelete)="deleteImage($event)"></ngx-image-gallery>
       </mat-tab>
 
+      <mat-tab class="demo-tab-component">
+        <ng-template mat-tab-label>
+          Hours
+        </ng-template>
+        <app-hour-heat-diagram></app-hour-heat-diagram>
+      </mat-tab>
+
     </mat-tab-group>
   </ng-container>
 

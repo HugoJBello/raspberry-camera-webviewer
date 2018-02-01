@@ -11,6 +11,7 @@ var imageQuery = require('./routes/imageQuery');
 var imageQueryPagedSearch = require('./routes/imageQueryPagedSearch');
 var imageSaverFromCam = require('./routes/imageSaverFromCam');
 var imageSender = require('./routes/imageSender');
+var imageMapData = require('./routes/heatMapData');
 
 const cors = require('cors');
 //const checkScopes = jwtAuthz([ 'openid profile read:images' ]);
@@ -46,6 +47,8 @@ if (config.useAuth0){
 
 app.use('/images/', imageQuery);
 app.use('/images/', imageQueryPagedSearch);
+app.use('/images/', imageMapData);
+
 app.use('/', imageSaverFromCam);
 app.use('/serve/', imageSender);
 
