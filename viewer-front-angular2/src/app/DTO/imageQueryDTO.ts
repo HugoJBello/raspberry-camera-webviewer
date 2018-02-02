@@ -1,4 +1,4 @@
-export class ImageQuery {
+export class ImageQueryDTO {
     constructor(
     public numberOfImages: any,
     public page: number,

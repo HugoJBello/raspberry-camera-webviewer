@@ -3,7 +3,7 @@ module.exports = {
     //destinyPath:"/home/hjbello/Pictures",
     basicAuthUser:"norhug",
     basicAuthPassword:"b1234",
-    useAuth0: false,
+    useAuth0: true,
     mysqlHost:"localhost",
     mysqlUser:"root",
     mysqlPassword:"",

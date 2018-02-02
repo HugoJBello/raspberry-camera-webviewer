@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { Image } from '../image';
-import { ImageQuery } from '../imageQuery';
-import { ParametersImageQuery } from '../parametersImageQuery';
+import { ImageDTO } from '../DTO/imageDTO';
+import { ImageQueryDTO } from '../DTO/imageQueryDTO';
+import { ParametersImageQuery } from '../DTO/parametersImageQueryDTO';
 import { ImagesService } from '../images.service';
 import { Subscription } from 'rxjs/Subscription';
 import { AuthService } from '../auth/auth.service';
@@ -18,11 +18,11 @@ import { NgxImageGalleryComponent, GALLERY_IMAGE, GALLERY_CONF } from "ngx-image
   styleUrls: ['image-displayer.component.css']
 })
 export class ImageDisplayerComponent implements OnInit {
-  @Input() images: Image[]; 
+  @Input() images: ImageDTO[]; 
   @Input() imagesByCamera : any[];
-  @Input() imageQuery: ImageQuery;
+  @Input() imageQuery: ImageQueryDTO;
   @Input() parametersImageQuery: ParametersImageQuery;
-  @Output() onImagesSearch = new EventEmitter<Image[]>();
+  @Output() onImagesSearch = new EventEmitter<ImageDTO[]>();
 
 
   error: any;
@@ -43,7 +43,7 @@ export class ImageDisplayerComponent implements OnInit {
   imagesF: GALLERY_IMAGE[] = [ ];
   
   // table configuration
-  dataSource = new MatTableDataSource<Image>(this.images);
+  dataSource = new MatTableDataSource<ImageDTO>(this.images);
   displayedColumns = ['filename', 'path', 'date_taken','camera_id','camera_ip'];
 
   constructor(public imagesService: ImagesService){
@@ -56,8 +56,7 @@ export class ImageDisplayerComponent implements OnInit {
   }
   ngOnChanges() {
     this.loadImagesFormated();
-    console.log(this.imagesByCamera);
-    this.dataSource = new MatTableDataSource<Image>(this.images);
+    this.dataSource = new MatTableDataSource<ImageDTO>(this.images);
 
   }
   loadImagesFormated(){

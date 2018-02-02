@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import { catchError } from 'rxjs/operators';
-import { Image } from './image';
+import { ImageDTO } from './DTO/imageDTO';
 import { CONFIG } from './config/config';
 
 @Injectable()
@@ -21,7 +21,7 @@ export class ImagesService {
   private urlActiveCameras = this.baseUrl + "/images/active_cameras"
 
 
-  private images: Image[];
+  private images: ImageDTO[];
 
   constructor(private http: HttpClient) { }
 

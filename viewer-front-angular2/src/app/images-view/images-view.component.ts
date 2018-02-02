@@ -1,8 +1,8 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { AuthService } from '../auth/auth.service';
-import { Image } from '../image';
-import { ImageQuery } from '../imageQuery';
-import { ParametersImageQuery } from '../parametersImageQuery';
+import { ImageDTO } from '../DTO/imageDTO';
+import { ImageQueryDTO } from '../DTO/imageQueryDTO';
+import { ParametersImageQuery } from '../DTO/parametersImageQueryDTO';
 
 @Component({
   selector: 'images-view-deals',
@@ -10,10 +10,10 @@ import { ParametersImageQuery } from '../parametersImageQuery';
   styleUrls: ['./images-view.component.css']
 })
 export class ImagesViewComponent implements OnInit {
-  images: Image[];
-  imageQuery: ImageQuery = new ImageQuery(10, null, false, false, null,null);
+  images: ImageDTO[];
+  imageQuery: ImageQueryDTO = new ImageQueryDTO(10, null, false, false, null,null);
   parametersImageQuery: ParametersImageQuery;
-  imagesMapByCamera: Map<string,Image[]> = new Map;
+  imagesMapByCamera: Map<string,ImageDTO[]> = new Map;
 
   imagesByCamera : any[];
   error:any;
@@ -45,11 +45,9 @@ export class ImagesViewComponent implements OnInit {
 
   onChangeImagesQuery(imageQuery){
     this.imageQuery = imageQuery;
-    console.log(imageQuery);
   }
   onChangeParameters(parametersImageQuery){
     this.parametersImageQuery = parametersImageQuery;
-    console.log(parametersImageQuery);
   }
 
 }

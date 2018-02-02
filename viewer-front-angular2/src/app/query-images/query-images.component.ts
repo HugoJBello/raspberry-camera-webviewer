@@ -1,13 +1,15 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { ImageQuery } from '../imageQuery';
-import { Image } from '../image';
+import { ImageQueryDTO } from '../DTO/imageQueryDTO';
+import { ImageDTO } from '../DTO/imageDTO';
 
 import { ImagesService } from '../images.service';
+import { UtilsDateService } from '../utils-date.service';
+
 import { Subscription } from 'rxjs/Subscription';
 import { AuthService } from '../auth/auth.service';
 
 import { OnDestroy } from '@angular/core/src/metadata/lifecycle_hooks';
-import { ParametersImageQuery } from '../parametersImageQuery';
+import { ParametersImageQuery } from '../DTO/parametersImageQueryDTO';
 
 @Component({
   selector: 'app-query-images',
@@ -15,16 +17,16 @@ import { ParametersImageQuery } from '../parametersImageQuery';
   styleUrls: ['./query-images.component.css']
 })
 export class QueryImagesComponent implements OnInit, OnDestroy {
-  @Input() imageQuery: ImageQuery;
+  @Input() imageQuery: ImageQueryDTO;
   @Input() parametersImageQuery: ParametersImageQuery;
-  images: Image[];
+  images: ImageDTO[];
   imagesSub: Subscription;
   error: any;
 
-  @Output() onChangeImagesQuery = new EventEmitter<ImageQuery>();
+  @Output() onChangeImagesQuery = new EventEmitter<ImageQueryDTO>();
   @Output() onChangeParameters = new EventEmitter<ParametersImageQuery>();
 
-  @Output() onImagesSearch = new EventEmitter<Image[]>();
+  @Output() onImagesSearch = new EventEmitter<ImageDTO[]>();
 
   options = [
     { id: 1, name: "1" },
@@ -35,15 +37,10 @@ export class QueryImagesComponent implements OnInit, OnDestroy {
   selectedValue = this.options[1];
 
 
-  constructor(public imagesService: ImagesService) { }
+  constructor(public imagesService: ImagesService, public utils: UtilsDateService) { }
 
   public onClickButton(): void {  // event will give you full breif of action
     this.imageQuery.page = 1;
-   // if (this.imageQuery.date != null) {
-   //   if (this.imageQuery.date.getMonth === NaN) {
-   //     this.imageQuery.date = null;
-   //   }
-   // }
  
     if (this.imageQuery.numberOfImages == 'all') {
       if (this.imageQuery.date == null || this.imageQuery.date =="") {
@@ -64,7 +61,7 @@ export class QueryImagesComponent implements OnInit, OnDestroy {
           );
       } else {
         this.imagesSub = this.imagesService
-          .getImagesDatePaged(this.formatDate(this.imageQuery.date), this.imageQuery.page)
+          .getImagesDatePaged(this.utils.formatDate(this.imageQuery.date), this.imageQuery.page)
           .subscribe(
           images => this.images = images,
           err => error => this.error = err,
@@ -72,7 +69,7 @@ export class QueryImagesComponent implements OnInit, OnDestroy {
           );
 
         this.imagesSub = this.imagesService
-          .getParametersDate(this.formatDate(this.imageQuery.date))
+          .getParametersDate(this.utils.formatDate(this.imageQuery.date))
           .subscribe(
           parametersImageQuery => this.parametersImageQuery = parametersImageQuery,
           err => error => this.error = err,
@@ -86,11 +83,11 @@ export class QueryImagesComponent implements OnInit, OnDestroy {
           .subscribe(
           images => this.images = images,
           err => error => this.error = err,
-          () => { console.log(this.images);this.onImagesSearch.emit(this.images); this.onChangeImagesQuery.emit(this.imageQuery); }
+          () => {this.onImagesSearch.emit(this.images); this.onChangeImagesQuery.emit(this.imageQuery); }
           );
       } else {
         this.imagesSub = this.imagesService
-          .getLastImagesLimitDate(this.imageQuery.numberOfImages, this.formatDate(this.imageQuery.date))
+          .getLastImagesLimitDate(this.imageQuery.numberOfImages, this.utils.formatDate(this.imageQuery.date))
           .subscribe(
           images => this.images = images,
           err => error => this.error = err,
@@ -98,11 +95,6 @@ export class QueryImagesComponent implements OnInit, OnDestroy {
           );
       }
     }
-  }
-
-  formatDate(date) {
-    date = new Date(date);
-    return date.getFullYear() + '-' + ("0" + (date.getMonth() + 1)).slice(-2) + '-' + ("0" + date.getDate()).slice(-2);
   }
 
   ngOnInit() {

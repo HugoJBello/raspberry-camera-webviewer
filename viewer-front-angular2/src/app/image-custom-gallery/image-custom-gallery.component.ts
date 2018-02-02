@@ -1,5 +1,5 @@
 import { Component, OnChanges, OnInit, Input } from '@angular/core';
-import { Image } from '../image';
+import { ImageDTO } from '../DTO/imageDTO';
 
 @Component({
   selector: 'app-image-custom-gallery',
@@ -7,7 +7,7 @@ import { Image } from '../image';
   styleUrls: ['./image-custom-gallery.component.css']
 })
 export class ImageCustomGalleryComponent implements OnChanges {
-  @Input() images: Image[];
+  @Input() images: ImageDTO[];
   currentPage: number = 0;
   numberOfPages: number =0;
 

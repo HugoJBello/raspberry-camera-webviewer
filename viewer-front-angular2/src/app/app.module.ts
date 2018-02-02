@@ -12,6 +12,9 @@ import { ImagesViewComponent } from './images-view/images-view.component';
 import { CallbackComponent } from './callback.component';
 import { AuthService } from './auth/auth.service';
 import { ImagesService } from './images.service';
+import { HeatMapDataService } from './heat-map-data.service';
+import { UtilsDateService } from './utils-date.service';
+
 import { HttpClientModule } from '@angular/common/http';
 import { ImageDisplayerComponent } from './image-displayer/image-displayer.component';
 import { QueryImagesComponent } from './query-images/query-images.component';
@@ -56,7 +59,9 @@ import { CalendarHeatmap } from 'angular2-calendar-heatmap';
     ],
   providers: [
     AuthService,
-    ImagesService
+    ImagesService,
+    HeatMapDataService,
+    UtilsDateService
   ],
   bootstrap: [AppComponent]
 })
