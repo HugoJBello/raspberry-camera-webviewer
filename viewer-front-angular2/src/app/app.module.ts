@@ -28,6 +28,9 @@ import {MatTableModule} from '@angular/material/table';
 import {CdkTableModule} from '@angular/cdk/table';
 import { HourHeatDiagramComponent } from './hour-heat-diagram/hour-heat-diagram.component';
 import { CalendarHeatmap } from 'angular2-calendar-heatmap';
+import { ActivivityViewComponent } from './activivity-view/activivity-view.component';
+import { LogQueryComponent } from './log-query/log-query.component';
+import { LogHeatDiagramComponent } from './log-heat-diagram/log-heat-diagram.component';
 
 
 @NgModule({
@@ -40,7 +43,10 @@ import { CalendarHeatmap } from 'angular2-calendar-heatmap';
     QueryImagesComponent,
     ImageCustomGalleryComponent,
     HourHeatDiagramComponent,
-    CalendarHeatmap
+    CalendarHeatmap,
+    ActivivityViewComponent,
+    LogQueryComponent,
+    LogHeatDiagramComponent
     ],
   imports: [
     BrowserModule,

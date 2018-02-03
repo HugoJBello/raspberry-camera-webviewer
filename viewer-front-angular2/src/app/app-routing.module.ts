@@ -4,6 +4,7 @@ import { CallbackComponent } from './callback.component';
 import { HomeComponent } from './home/home.component';
 import { ImagesViewComponent } from './images-view/images-view.component';
 import { AuthGuard } from './auth/auth.guard';
+import { ActivivityViewComponent } from './activivity-view/activivity-view.component';
 
 const routes: Routes = [
   {
@@ -18,6 +19,13 @@ const routes: Routes = [
   {
     path: 'picam-view',
     component: ImagesViewComponent,
+    canActivate: [
+      AuthGuard
+    ]
+  },
+  {
+    path: 'activity-dashboard',
+    component: ActivivityViewComponent,
     canActivate: [
       AuthGuard
     ]

@@ -13,10 +13,10 @@ chai.use(chaiHttp);
 /*
   * Test the /GET route
   */
-describe('/GET data images', () => {
-    it('it list data to plot in a heat date of images', (done) => {
+describe('/GET logs', () => {
+    it('it shoud give you todays logs', (done) => {
         chai.request(server)
-            .get('/images/heat_map_data_date/day=2018-02-02')
+            .get('/logs/heat_map_logs_date/day=2018-02-03')
             .end((err, res) => {
                 res.should.have.status(200);
                 //res.body.should.be.a('array');

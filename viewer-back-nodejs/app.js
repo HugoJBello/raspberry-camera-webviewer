@@ -12,6 +12,7 @@ var imageQueryPagedSearch = require('./routes/imageQueryPagedSearch');
 var imageSaverFromCam = require('./routes/imageSaverFromCam');
 var imageSender = require('./routes/imageSender');
 var imageMapData = require('./routes/heatMapData');
+var logsMap = require('./routes/heatMapLogs');
 
 const cors = require('cors');
 //const checkScopes = jwtAuthz([ 'openid profile read:images' ]);
@@ -43,11 +44,15 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 if (config.useAuth0){
   app.use('/images/',checkJwt);
+  app.use('/logs/',checkJwt);
+
 }
 
 app.use('/images/', imageQuery);
 app.use('/images/', imageQueryPagedSearch);
 app.use('/images/', imageMapData);
+app.use('/logs/', logsMap);
+
 
 app.use('/', imageSaverFromCam);
 app.use('/serve/', imageSender);

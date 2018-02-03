@@ -1,5 +1,5 @@
 import {DetailsHeatMapDTO} from './detailsHeatMapDTO'
-export class HeatMapDataDTO {
+export class HeatMapDTO {
   constructor(
   public date: Date,
   public total: number,

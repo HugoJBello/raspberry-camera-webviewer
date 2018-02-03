@@ -17,7 +17,7 @@ const checkJwt = jwt({
   }),
 
   // Validate the audience and the issuer.
-  audience: 'picam-viewer-back',
+  //audience: 'picam-viewer-back',
   issuer: `https://cam-viewer-hjbello.eu.auth0.com/`,
   algorithms: ['RS256']
 });

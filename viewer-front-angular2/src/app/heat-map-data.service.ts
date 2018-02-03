@@ -7,13 +7,24 @@ import { catchError } from 'rxjs/operators';
 @Injectable()
 export class HeatMapDataService {
   private baseUrl = 'http://' + CONFIG.URL_BASE + ':3333';
-  private urlHeatData = this.baseUrl + "/images/heat_map_data_date"
+  private urlHeatDataImages = this.baseUrl + "/images/heat_map_data_date"
+  private urlHeatDataLogs = this.baseUrl + "/logs/heat_map_logs_date"
 
   constructor(private http: HttpClient) { }  // Implement a method to get the private deals
 
   getHeatMapData(day) {
     return this.http
-      .get(this.urlHeatData + "/day=" + day, {
+      .get(this.urlHeatDataImages + "/day=" + day, {
+        headers: new HttpHeaders().set('Authorization', `Bearer ${localStorage.getItem('id_token')}`)
+      })
+      .pipe(
+        catchError(this.handleError)
+      );
+  }
+
+  getHeatMapLogs(day) {
+    return this.http
+      .get(this.urlHeatDataLogs + "/day=" + day, {
         headers: new HttpHeaders().set('Authorization', `Bearer ${localStorage.getItem('id_token')}`)
       })
       .pipe(

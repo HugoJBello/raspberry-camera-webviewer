@@ -3,6 +3,7 @@ var router = express.Router();
 const fs = require('fs-extra')
 var con = require('../mysql_connection/connection');
 var config = require('../config/config');
+var logRequest = require('../utils/logRequest');
 
 var basicAuth = require('basic-auth');
 

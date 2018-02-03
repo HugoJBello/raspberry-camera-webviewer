@@ -101,7 +101,7 @@ export class QueryImagesComponent implements OnInit, OnDestroy {
 
   }
   ngOnDestroy() {
-    this.imagesSub.unsubscribe();
+   // this.imagesSub.unsubscribe();
   }
 
 }

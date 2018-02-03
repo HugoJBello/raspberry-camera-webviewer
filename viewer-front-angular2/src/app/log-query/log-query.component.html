@@ -1,0 +1,20 @@
+<div class="jumbotron text-center">
+  <form (ngSubmit)="onClickButton()">
+    <ul class="nav navbar-nav">
+      <li>
+        Only from: &emsp;
+        <input type="date" name="date" [(ngModel)]="logQuery.date" #name="ngModel" /> &emsp; &emsp;
+      </li>
+      <li>
+        <input type="submit" (submit)="onClickButton()" value="View" />
+      </li>
+    </ul>
+  </form>
+</div>
+
+<calendar-heatmap
+[data]="data"
+[color]="color"
+[overview]="overview">
+</calendar-heatmap>
+<input type='hidden' value="{{logQuery.date}}">

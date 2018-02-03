@@ -4,10 +4,11 @@ use picam_app;
 
 drop table if exists image;
 drop table if exists camera;
+drop table if exists log;
 
 
 create table if not exists camera(
-	camera_id VARCHAR(300),
+	camera_id VARCHAR(100),
 	date_added DATETIME,
 	info VARCHAR(900),
 	PRIMARY KEY (camera_id) );
@@ -17,10 +18,18 @@ create table if not exists image(
 	date_taken DATETIME,
 	path VARCHAR(500),
 	filename VARCHAR(100),
-	camera_id VARCHAR(300),
+	camera_id VARCHAR(100),
 	camera_ip VARCHAR(300),
 	FOREIGN KEY (camera_id) REFERENCES camera(camera_id),
 	PRIMARY KEY (id) );
+
+create table if not exists log(
+	id INT NOT NULL AUTO_INCREMENT,
+	date_added DATETIME,
+	request_ip VARCHAR(100),
+	request_url varchar(300),
+	PRIMARY KEY (id) );
+
 
 # alter table image
 # add camera_id VARCHAR(300),

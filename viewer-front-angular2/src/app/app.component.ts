@@ -21,6 +21,9 @@ import { AuthService } from './auth/auth.service';
         <li>
           <a routerLink="/picam-view" *ngIf="authService.authenticated" routerLinkActive="active">Camera View</a>
         </li>
+        <li>
+          <a routerLink="/activity-dashboard" *ngIf="authService.authenticated" routerLinkActive="active">Activity</a>
+        </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>

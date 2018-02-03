@@ -1,5 +1,5 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { HeatMapDataDTO } from '../DTO/heatMapDataDTO';
+import { Component, OnInit, Input,SimpleChanges, SimpleChange } from '@angular/core';
+import { HeatMapDTO } from '../DTO/heatMapDataDTO';
 import { HeatMapDataService } from '../heat-map-data.service';
 import { UtilsDateService } from '../utils-date.service';
 import { Subscription } from 'rxjs/Subscription';
@@ -12,9 +12,9 @@ import { ImageDTO } from '../DTO/imageDTO';
   styleUrls: ['./hour-heat-diagram.component.css']
 })
 export class HourHeatDiagramComponent implements OnInit {
-  data: HeatMapDataDTO[];
+  data: HeatMapDTO[];
   @Input() imageQuery: ImageQueryDTO;
-  @Input() images: ImageDTO[]; 
+  @Input() images: ImageDTO[];
 
   color: string = "red";
   overview: string = "day";
@@ -27,13 +27,7 @@ export class HourHeatDiagramComponent implements OnInit {
   ngOnInit() {
 
     this.day = this.utils.formatDate(new Date());
-
-    this.hourDataSub = this.hourDataService.getHeatMapData(this.day)
-      .subscribe(
-      data => this.data = data,
-      err => error => this.error = err,
-      () => { console.log(this.data) }
-      );
+    this.getData();
     /*
     this.data = [{
       date: new Date("2018-02-01"),
@@ -57,14 +51,22 @@ export class HourHeatDiagramComponent implements OnInit {
 
   }
 
-  ngOnChanges() {
-    this.day = this.utils.formatDate(new Date());
+  ngOnChanges(changes: SimpleChanges){
+    if(this.images){
+      this.day = this.utils.formatDate(this.images[0].date_taken);
+      if (this.day == "NaN-aN-aN") this.day = this.utils.formatDate(null);
+      console.log(":::" + this.day)
+      this.getData();
+    }
+    
+  }
 
+  getData() {
     this.hourDataSub = this.hourDataService.getHeatMapData(this.day)
       .subscribe(
       data => this.data = data,
       err => error => this.error = err,
-      () => { console.log(this.data) }
+      () => { console.log(this.day);console.log(this.data) }
       );
   }
 
